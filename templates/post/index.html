@@ -17,76 +17,80 @@
 <h1 class="w3-center" id="article"><u>Articles</u></h1>
 <div class="container-index">
     {% for post in posts %}
-    <article class="article w3-card w3-round w3-padding">
-        <img class="image" src="{{post.images.url}}" alt="" srcset="" style="width: 100%;">
-        <h3>{{ post.title }}</h3>
-        <h6>Publié par <i>{{ post.author_or_default }}</i> le {{ post.created_on|date:'j F Y' }}</h6>
-        <p>{{ post.content|safe|truncatewords:6 }}</p>
-        <div class="w3-container w3-center">
-            <a href="{% url 'details' post.slug %}" class="w3-button w3-blue-gray w3-border w3-round">Lire</a>
-        </div>
-    </article>
+        <article class="article w3-card w3-round w3-padding">
+            <img class="image" src="{{post.images.url}}" alt="" srcset="" style="width: 100%;">
+            <h3>{{ post.title }}</h3>
+            <h6>Publié par <i>{{ post.author_or_default }}</i> le {{ post.created_on|date:'j F Y' }}</h6>
+            <p>{{ post.content|safe|truncatewords:6 }}</p>
+            <div class="w3-container w3-center">
+                {% if post.published %}
+                    <a href="{% url 'details' post.slug %}" class="w3-button w3-blue-gray w3-border w3-round">Lire la suite</a>
+                {% else %}
+                    <a href="" class="w3-button w3-white w3-border w3-round">En cours d'écriture</a>
+                {% endif %}
+            </div>
+        </article>
     {% endfor %}
 </div>
-    <br>
-    <div class="w3-bar pagination  w3-center">
-        <span class="step-links ">
-            {% if posts.has_previous %}
-                <a class="w3-button" href="?page=1#articles">&laquo; premier</a>
-                <a class="w3-button" href="?page={{ posts.previous_page_number }}#article">précédent</a>
-            {% endif %}
-    
-            <span class="current">
-                Page {{ posts.number }} of {{ posts.paginator.num_pages }}.
-            </span>
-    
-            {% if posts.has_next %}
-                <a class="w3-button" href="?page={{ posts.next_page_number }}#article">suivant</a>
-                <a class="w3-button" href="?page={{ posts.paginator.num_pages }}#article">dernier &raquo;</a>
-            {% endif %}
+<br>
+<div class="w3-bar pagination  w3-center">
+    <span class="step-links ">
+        {% if posts.has_previous %}
+            <a class="w3-button" href="?page=1#articles">&laquo; premier</a>
+            <a class="w3-button" href="?page={{ posts.previous_page_number }}#article">précédent</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ posts.number }} of {{ posts.paginator.num_pages }}.
         </span>
-    </div>
-    <div class="w3-container" style="margin: 0 5%;">
-        <hr>
-        <h2 id="contacts" class="w3-center"><u>Contactez-nous</u></h2>
-      <form class="w3-container">
-        <label>Email</label>
-        <input class="w3-input w3-border w3-light-grey" type="email">
+
+        {% if posts.has_next %}
+            <a class="w3-button" href="?page={{ posts.next_page_number }}#article">suivant</a>
+            <a class="w3-button" href="?page={{ posts.paginator.num_pages }}#article">dernier &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+<div class="w3-container" style="margin: 0 5%;">
+    <hr>
+    <h2 id="contacts" class="w3-center"><u>Contactez-nous</u></h2>
+    <form class="w3-container">
+    <label>Email</label>
+    <input class="w3-input w3-border w3-light-grey" type="email">
+
+    <label>Prénoms</label>
+    <input class="w3-input w3-border w3-light-grey" type="text">
     
-        <label>Prénoms</label>
-        <input class="w3-input w3-border w3-light-grey" type="text">
-      
-        <label>Nom</label>
-        <input class="w3-input w3-border w3-light-grey" type="text">
-        <label>Message</label>
-        <textarea class="w3-input w3-border w3-light-grey" type="text" name="" id="" cols="30" rows="10"></textarea>
-        <p></p>
-        <button class="w3-btn w3-blue-grey w3-hover-white w3-padding">Envoyé</button>
-      </form>
-    </div> 
-    <section style="margin: 10px 5%;">
-        <hr>
-        <h1 class="w3-center" id="about"><u>A Propos</u></h1>
-        <p>
-            Je m’appelle Niamien Niamien Eric, je suis blogueuse et entrepreneur. Je vis dans la région Abidjanaise, d’origine Ivoirienne j’ai un parcours atypique, une formation en Sciences Infirmières en poche, je suis en reconversion professionel pour suivre mon rêve, devenir développeur.
+    <label>Nom</label>
+    <input class="w3-input w3-border w3-light-grey" type="text">
+    <label>Message</label>
+    <textarea class="w3-input w3-border w3-light-grey" type="text" name="" id="" cols="30" rows="10"></textarea>
+    <p></p>
+    <button class="w3-btn w3-blue-grey w3-hover-white w3-padding">Envoyé</button>
+    </form>
+</div> 
+<section style="margin: 10px 5%;">
+    <hr>
+    <h1 class="w3-center" id="about"><u>A Propos</u></h1>
+    <p>
+        Je m’appelle Niamien Niamien Eric, je suis blogueuse et entrepreneur. Je vis dans la région Abidjanaise, d’origine Ivoirienne j’ai un parcours atypique, une formation en Sciences Infirmières en poche, je suis en reconversion professionel pour suivre mon rêve, devenir développeur.
 
-            Tour à tour mannequin grand taille, comédienne et chroniqueuse beauté pour l’émission 100% Mag sur M6. Je vis aujourd’hui de ma passion que je partage avec vous tous les jours sur ce blog, la mode (et la vie)!
+        Tour à tour mannequin grand taille, comédienne et chroniqueuse beauté pour l’émission 100% Mag sur M6. Je vis aujourd’hui de ma passion que je partage avec vous tous les jours sur ce blog, la mode (et la vie)!
 
-            Maman d’un petit garçon depuis décembre 2012 et d’une petite fille née en décembre 2015, j’essaie de conjuguer ma vie de maman et celle de passionnée de mode, déco et de voyage.
+        Maman d’un petit garçon depuis décembre 2012 et d’une petite fille née en décembre 2015, j’essaie de conjuguer ma vie de maman et celle de passionnée de mode, déco et de voyage.
 
-            En mars 2017 j’ai lancé mon shop en ligne d’objets chinés avec l’idée de rendre tendance ces pièces du passé. Leur donner une seconde vie lors de mises en scène sur site www.zwickyfactory.com
+        En mars 2017 j’ai lancé mon shop en ligne d’objets chinés avec l’idée de rendre tendance ces pièces du passé. Leur donner une seconde vie lors de mises en scène sur site www.zwickyfactory.com
 
-            Bienvenue sur ce blog, j’espère que mon petit monde vous plaira.
+        Bienvenue sur ce blog, j’espère que mon petit monde vous plaira.
 
-            Comment est-ce que je fais pour m’accepter -m’assumer?
+        Comment est-ce que je fais pour m’accepter -m’assumer?
 
-            Hmmm je n’ai pas de recette miracle, comme la plupart des femmes rondes, je suis passée par des moments difficiles, j’ai passé la moitié de ma vie au régime. L’adolescence n’a pas été toute rose, j’ai tout fait pour changer mon apparence. Aujourd’hui j’en ai terminé avec tout cela, je croque la vie à pleine dent. Je suis consciente de mes atouts comme de mes defauts, je me suis apprivoisée. J’ai écrit un billet qui pourra mieux vous éclairer sur mon parcours, à lire ICI.
+        Hmmm je n’ai pas de recette miracle, comme la plupart des femmes rondes, je suis passée par des moments difficiles, j’ai passé la moitié de ma vie au régime. L’adolescence n’a pas été toute rose, j’ai tout fait pour changer mon apparence. Aujourd’hui j’en ai terminé avec tout cela, je croque la vie à pleine dent. Je suis consciente de mes atouts comme de mes defauts, je me suis apprivoisée. J’ai écrit un billet qui pourra mieux vous éclairer sur mon parcours, à lire ICI.
 
-            Pour toutes autres questions sur la chirurgie bariatrique, les régimes, le sport, les psy, les gynécos etc, je vous conseille le site de Vivelesrondes qui est plus que complet à ces sujets. Allegro Fortissimo saura venir en aide à toutes celles qui sont victimes de discriminations.
+        Pour toutes autres questions sur la chirurgie bariatrique, les régimes, le sport, les psy, les gynécos etc, je vous conseille le site de Vivelesrondes qui est plus que complet à ces sujets. Allegro Fortissimo saura venir en aide à toutes celles qui sont victimes de discriminations.
 
-            Certains passages tv pourront peut-être un peu plus vous éclairer sur mon chemin, à visionner  I C I
+        Certains passages tv pourront peut-être un peu plus vous éclairer sur mon chemin, à visionner  I C I
 
-            Pour toutes vos questions, rendez-vous sur la FAQ !
-        </p>
-    </section>
+        Pour toutes vos questions, rendez-vous sur la FAQ !
+    </p>
+</section>
 {% endblock content %}

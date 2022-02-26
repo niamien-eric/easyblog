@@ -63,7 +63,7 @@ def postUpdate(request, slug):
     form = PostForm(request.POST or None, instance = obj)
     if form.is_valid():
         form.save()
-        return redirect('home')
+        return redirect('dashboard')
  
     context["form"] = form
     return render(request, "post/update_post.html", context)
@@ -74,7 +74,7 @@ def postDelete(request, slug):
 
     if request.method =="POST":
         post.delete()
-        return redirect('home')
+        return redirect('dashboard')
     
     context ={'post':post}
  

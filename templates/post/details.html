@@ -17,8 +17,8 @@
                     {% endwith %}
                 </span> |
                 {% if user.username == 'admin' %}
-                    <span>
-                        <a href="{% url 'update' post.slug %}" class="w3-text-red">Modifier</a>
+                    <span class="w3-right">
+                        <a href="{% url 'update' post.slug %}" class="w3-text-red"><b>Modifier</b></a>
                     </span>
                 {% endif %}
             </div>
