@@ -1,0 +1,17 @@
+div.container-index{
+    display: flex;
+    justify-content: space-around;
+}
+article.article{
+    width: 31%;
+}
+@media screen and (max-width:700px) {
+    div.container-index{
+        display: flex;
+        flex-direction: column;
+    }
+    article.article{
+        width: 100%;
+        margin: 5px;
+    }
+}

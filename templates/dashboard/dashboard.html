@@ -1,0 +1,48 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block headcontent %}
+    <title>Accueil</title>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<h1 class="w3-center" id="article"><u>Articles</u></h1>
+<div class="container-index">
+    {% for post in posts %}
+    <article class="article w3-card w3-round w3-padding">
+        <img class="image" src="{{post.images.url}}" alt="" srcset="" style="width: 100%;">
+        <h3>{{ post.title }}</h3>
+        <h6>Publié par <i>{{ post.author_or_default }}</i> le {{ post.created_on|date:'j F Y' }}</h6>
+        <p>{{ post.content|safe|truncatewords:6 }}</p>
+        <div class="w3-container w3-center">
+            <a href="{% url 'details' post.slug %}" class="w3-button w3-white w3-border w3-round">Lire</a>
+            {% if user.username == 'admin' %}
+                <a href="{% url 'update' post.slug %}" class="w3-button w3-blue w3-round">Modifier</a>
+                <a href="{% url  'delete' post.slug %}" class="w3-button w3-red w3-round">Supprimer</a>
+            {% endif %}
+            
+        </div>
+    </article>
+    {% endfor %}
+</div>
+    <br>
+    <div class="w3-bar pagination  w3-center">
+        <span class="step-links ">
+            {% if posts.has_previous %}
+                <a class="w3-button" href="?page=1#articles">&laquo; premier</a>
+                <a class="w3-button" href="?page={{ posts.previous_page_number }}#article">précédent</a>
+            {% endif %}
+    
+            <span class="current">
+                Page {{ posts.number }} of {{ posts.paginator.num_pages }}.
+            </span>
+    
+            {% if posts.has_next %}
+                <a class="w3-button" href="?page={{ posts.next_page_number }}#article">suivant</a>
+                <a class="w3-button" href="?page={{ posts.paginator.num_pages }}#article">dernier &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+{% endblock content %}

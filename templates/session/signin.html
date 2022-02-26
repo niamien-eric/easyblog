@@ -1,0 +1,27 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block headcontent %}
+    <title>login</title>
+    <link rel="stylesheet" href="{% static 'css/signin.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="signin-form-content">
+    <h2 class="w3-center">Connectez-vous </h2>
+
+    <form class="w3-container" method="POST">
+    {% csrf_token %}
+    <label class="w3-text-grey"><b>Nom d'utilisateur</b></label>
+    <input name="username" class="w3-input w3-border w3-light-grey" type="text">
+    
+    <label class="w3-text-grey"><b>Mot de passe</b></label>
+    <input name="password" class="w3-input w3-border w3-light-grey" type="password"> <br>
+  
+    <button type="submit" class="w3-btn w3-blue-grey">Connexion</button><br>
+    <p class="w3-center">
+      <a href="{% url 'signup' %}" class="w3-text-grey w3-center">S'enregistrer ici</a>
+    </p>
+  </form>
+</div>
+{% endblock content %}

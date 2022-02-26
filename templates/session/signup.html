@@ -1,0 +1,34 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block headcontent %}
+    <title>S'enregistrer</title>
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="signup-form-content">
+    <h2 class="w3-center">Créer un compte </h2>
+    <p>
+      {% if message %}<span class="w3-text-red">{{message}}</span>{% endif %}
+    </p>
+
+    <form class="w3-container" method="POST" action="">
+    {% csrf_token %}
+    <label class="w3-text-grey"><b>Nom d'utilisateur</b></label>
+    <input name="username" class="w3-input w3-border w3-light-grey" type="text">
+
+    <label class="w3-text-grey"><b>Mot de passe</b></label>
+    <input name="password" class="w3-input w3-border w3-light-grey" type="password">
+
+    <label class="w3-text-grey"><b>Confirmer mot de passe</b></label>
+    <input name="confirm_password" class="w3-input w3-border w3-light-grey" type="password"> <br>
+  
+    <button class="w3-btn w3-blue-grey" type="submit">S'enregistrer</button> <br>
+    <p class="w3-center">
+      <a href="{% url 'signin' %}" class="w3-text-grey">Se connecter ici</a>
+    </p>
+  </form>
+</div>
+  
+{% endblock content %}

@@ -1,0 +1,25 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block headcontent %}
+    <link rel="stylesheet" href="{% static 'css/add_post.css' %}">
+    <title>Ajouter un article</title>
+{% endblock %}
+    
+{% block content %}
+<div class="container-addpost" >
+    {% if img_obj is None %}
+    <h3>Ajouter un article</h3> 
+    <form method='POST' action="." enctype="multipart/form-data" class="w3-container">
+        {% csrf_token %}
+        {{form.media}}
+        {{form.as_p}}
+        <input class="w3-btn w3-green" type="submit" value="valider">
+    </form>
+    {% endif %}
+    {% if img_obj %}  
+        <h3>Téléchargement réussi : {{img_obj.title}}</h3>  
+        <img src="{{ img_obj.images.url}}" alt="connect" style="max-height:300px;">  
+    {% endif %}  
+</div>
+
+{% endblock %}

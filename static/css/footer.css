@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Akaya+Telivigala&family=Ubuntu+Mono&display=swap');
+footer {
+    margin-top: 30px;
+    display: flex;
+    flex-wrap:wrap;
+    justify-content: space-between;
+    color: #494949;
+    padding: 0 5%;
+  }
+  footer h2{
+    font-size: 20px;
+    font-family: 'Ubuntu Mono', monospace;
+    margin-top: 20px;
+  }
+  footer .social-media{
+    display:flex;
+  }
+  footer .social-media p{
+    font-size: 18px;
+    margin-right: 20px;
+  }

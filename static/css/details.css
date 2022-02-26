@@ -1,0 +1,38 @@
+.container-principal{
+    margin-top: 2%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.container-content{
+    width: 75%;
+}
+.image-card{
+    width: 100%;
+}
+
+.container-aside{
+    width: 20%;
+}
+
+@media screen and (max-width:700px) {
+    .container-principal{
+        margin-top: 2%;
+        display: flex;
+        flex-direction: column-reverse;
+        width: 100%;
+    }
+    .container-content{
+        width: 100%;
+        margin: 0 5px;
+    }
+    .image-card{
+        width: 100%;
+    }
+    
+    .container-aside{
+        width: 100%;
+        margin: 0 5px;
+    }
+}

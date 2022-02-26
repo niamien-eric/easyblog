@@ -1,0 +1,88 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block headcontent %}
+    <title>Détails</title>
+    <link rel="stylesheet" href="{% static 'css/details.css' %}">
+{% endblock %}
+{% block content %}
+    <div class="container-principal">
+        <div class="container-content">
+            <div class="title">
+                <h2>{{post.title}}</h2>
+                <span>date: {{post.created_on}}</span> | 
+                <span>auteur: {{post.author}}</span> |
+                <span>
+                    {% with comments.count as total_comments  %}
+                        {{total_comments}} commentaire{{total_comments|pluralize}}
+                    {% endwith %}
+                </span> |
+                {% if user.username == 'admin' %}
+                    <span>
+                        <a href="{% url 'update' post.slug %}" class="w3-text-red">Modifier</a>
+                    </span>
+                {% endif %}
+            </div>
+            <div class="image">
+                <img class="image-card" src="{{post.images.url}}" alt="Alps">
+            </div>
+            <div class="content-card">
+                <p>{{post.content|safe}}</p>
+                <hr>
+            </div>
+            <div class="content-comment">
+
+                <h2>Commantaires</h2>
+                    {% if new_comment %}
+                        <span> le commentaire a été envoyé </span>
+                    {% else %}
+                        <p>Ajouter nouveau un commentaire.</p>
+                        <form method='POST' class="w3-container">
+                            {% csrf_token %}
+                            {{comment_form.as_p}}
+                            <input class="w3-btn w3-black" type="submit" value="valider">
+                        </form>
+                    {% endif %}
+               
+                {% for comment in comments %}
+                    <span>
+                        {{comment.created}}
+                    </span><br>
+                    <span>* {{forloop.counter}} - {{comment.username}}</span>: {{comment.body}}<br>
+                    {% empty %}
+                    <span>
+                        pas de commmaire
+                    </span><br>
+                {% endfor %}
+                <hr>
+            </div>
+        </div>
+        <div class="container-aside" >
+            <div class="w3-card-4">
+
+                <header class="gray-color">
+                  <p class="w3-padding">Recherche</p>
+                </header>
+                
+                <div class="search w3-padding">
+                        <input class="w3-input w3-border w3-round" type="text">
+                        <button class="w3-button w3-teal w3-round">Go!</button>
+                </div>
+                
+            </div>
+        
+            <div class="w3-card-4">
+
+                <header class="gray-color">
+                    <p class="w3-padding">Catégorie</p>
+                </header>
+                
+                <div class="w3-container">
+                    {% for post in posts %}
+                        <p><a href="{% url 'details' post.slug %}">{{post.title}}</a></p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+{% endblock content %}

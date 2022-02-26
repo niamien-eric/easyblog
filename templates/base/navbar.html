@@ -1,0 +1,31 @@
+<h1 class="w3-center" style="font-family: 'Pacifico', cursive;text-shadow:1px 1px 0 #444">Easy Blog</h1>
+<h6 class="w3-center" style="font-family: 'Comfortaa', cursive;">when trading become easy</h6>
+<div class="w3-bar w3-padding w3-border">
+    <a href="#" class="w3-bar-item w3-button w3-mobile w3-hover-none" style="font-size: large;">EasyBlog.com</a>
+    {% if home %}
+        <a href="#article" class="w3-bar-item w3-button w3-mobile w3-hover-none">Article</a>
+        <a href="#contacts" class="w3-bar-item w3-button w3-mobile w3-hover-none">Contacts</a>
+        <a href="#about" class="w3-bar-item w3-button w3-mobile w3-hover-none">A Propos</a>
+    {% else %}
+        <a href="{% url 'home' %}" class="w3-bar-item w3-button w3-mobile w3-hover-none">Accueil</a>
+    {% endif %}
+    {% if user.username == 'admin' %}
+    <div class="w3-dropdown-hover w3-mobile">
+        <button class="w3-button">Admin</button>
+        <div class="w3-dropdown-content w3-bar-block w3-card-4">
+            <a href="{% url 'add_post' %} "href="#article" class="w3-bar-item w3-button w3-mobile w3-hover-blue-grey">Créer un article</a>
+            <a href="{% url 'dashboard' %} "href="#article" class="w3-bar-item w3-button w3-mobile w3-hover-blue-grey">Dashboard</a>
+        </div>
+      </div>
+    {% endif %}
+    {% if user.is_authenticated %}
+    <div class="w3-dropdown-hover w3-mobile w3-right">
+        <button class="w3-button w3-hover-none">Bienvenue {{user.username}}</button>
+        <div class="w3-dropdown-content w3-bar-block w3-card-4 ">
+            <a href="{% url 'signout' %}" class="w3-bar-item w3-button w3-right w3-mobile w3-hover-blue-grey"> déconnection </a>
+        </div>
+    </div>
+    {% else %}
+        <a href="{% url 'signin' %}" class="w3-bar-item w3-button w3-right w3-mobile w3-hover-blue">se connecter</a>
+    {% endif %}
+</div>
