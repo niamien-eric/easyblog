@@ -6,14 +6,20 @@
 {% endblock %}
     
 {% block content %}
-<h3 class="w3-center">Modifier l'article</h3> 
-    <div class="container-updatepost" >
-        <form method='POST' action="." enctype="multipart/form-data" class="w3-container">
-            {% csrf_token %}
-            {{form.media}}
-            {{form.as_p}}
-            <input class="w3-btn w3-green" type="submit" value="modifier">
-        </form>
-        
-    </div>
+{% if message %}
+    <span class="w3-padding w3-border w3-card w3-round w3-green" style="text-align: center;">{{message}}</span>
+{% else %}
+    <h3 class="w3-center">Modifier l'article</h3> 
+        <div class="container-updatepost" >
+            <form method='POST' action="." enctype="multipart/form-data" class="w3-container">
+                {% csrf_token %}
+                {{form.media}}
+                {{form.as_p}}
+                <input class="w3-btn w3-green" type="submit" value="modifier">
+            </form>
+            
+        </div>
+{% endif %}
+
+
 {% endblock %}

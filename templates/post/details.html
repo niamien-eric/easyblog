@@ -8,17 +8,20 @@
     <div class="container-principal">
         <div class="container-content">
             <div class="title">
-                <h2>{{post.title}}</h2>
+                <h2 class="w3-text-blue-grey">{{post.title}}</h2>
+                <i class='fa fa-calendar w3-text-blue-grey'></i>
                 <span>date: {{post.created_on}}</span> | 
+                <i class='fa-solid fa-person w3-text-blue-grey'></i>
                 <span>auteur: {{post.author}}</span> |
+                <i class='fas fa-comment-alt  w3-text-blue-grey'></i>
                 <span>
                     {% with comments.count as total_comments  %}
                         {{total_comments}} commentaire{{total_comments|pluralize}}
                     {% endwith %}
-                </span> |
+                </span>
                 {% if user.username == 'admin' %}
-                    <span class="w3-right">
-                        <a href="{% url 'update' post.slug %}" class="w3-text-red"><b>Modifier</b></a>
+                <span class="w3-right">
+                    <i class='fa fa-edit w3-text-blue-grey'></i><a href="{% url 'update' post.slug %}" class="w3-text-grey"><b>Modifier</b></a>
                     </span>
                 {% endif %}
             </div>
@@ -31,7 +34,7 @@
             </div>
             <div class="content-comment">
 
-                <h2>Commantaires</h2>
+                <h2 class="w3-text-blue-grey">Commantaires</h2>
                     {% if new_comment %}
                         <span> le commentaire a été envoyé </span>
                     {% else %}
@@ -39,7 +42,7 @@
                         <form method='POST' class="w3-container">
                             {% csrf_token %}
                             {{comment_form.as_p}}
-                            <input class="w3-btn w3-black" type="submit" value="valider">
+                            <input class="w3-btn w3-blue-grey" type="submit" value="valider">
                         </form>
                     {% endif %}
                
@@ -60,25 +63,14 @@
             <div class="w3-card-4">
 
                 <header class="gray-color">
-                  <p class="w3-padding">Recherche</p>
-                </header>
-                
-                <div class="search w3-padding">
-                        <input class="w3-input w3-border w3-round" type="text">
-                        <button class="w3-button w3-teal w3-round">Go!</button>
-                </div>
-                
-            </div>
-        
-            <div class="w3-card-4">
-
-                <header class="gray-color">
-                    <p class="w3-padding">Catégorie</p>
+                    <p class="w3-padding w3-blue-grey"><b>Catégorie</b></p>
                 </header>
                 
                 <div class="w3-container">
                     {% for post in posts %}
-                        <p><a href="{% url 'details' post.slug %}">{{post.title}}</a></p>
+                        {% if post.published %}
+                            <p><a href="{% url 'details' post.slug %}">{{post.title}}</a></p>
+                        {% endif %}
                     {% endfor %}
                 </div>
             </div>

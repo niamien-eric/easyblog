@@ -7,21 +7,15 @@
 {% endblock %}
 
 {% block content %}
-<div class="w3-container">
-    
-        <h1 style="display: inline;">Tableau de bord des Articles</h1>
-        <div class=" w3-right" style="width: 300px;">
-            
-            <div class="search w3-padding" style="display: flex;">
-                    <input class="w3-input w3-border w3-round w3-padding" type="text" placeholder="Recherche">
-                    <button class="w3-button w3-teal w3-round">Go!</button>
-            </div>
-            
-        </div>
-    
-    <table class="w3-table-all w3-centered">
+<div class="w3-container" style="padding: 10px;">
+    <span class="w3-text-blue-grey" style="" ><u class="w3-text-blue-grey">Dashboard des Articles</u></span>
+    <span class="w3-right" style="display: flex;margin: 0;padding: 0;">
+        <input style="width: 200px;" class="w3-input w3-border w3-round w3-padding" type="text" placeholder="Recherche">
+        <button class="w3-button w3-round w3-blue-grey">Go!</button>
+    </span>
+    <table class="w3-table w3-striped w3-centered" style="margin-top: 5px;">
       <tr>
-        <th>Image</th>
+        <td>#Id</td>
         <th>Titre</th>
         <th>Auteur</th>
         <th>Date</th>
@@ -31,7 +25,7 @@
       </tr>
       {% for post in posts %}
         <tr>
-            <td><img class="image" src="{{post.images.url}}" alt="" srcset="" style="width: 50px;"></td>
+            <td>{{ post.id }}</td>
             <td>{{ post.title }}</td>
             <td>{{ post.author_or_default }}</td>
             <td>{{ post.created_on|date:'j F Y' }}</td>

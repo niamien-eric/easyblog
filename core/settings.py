@@ -40,7 +40,7 @@ TINYMCE_DEFAULT_CONFIG = {
     "fullscreen  preview save print | insertfile image media pageembed template link anchor codesample | "
     "a11ycheck ltr rtl | showcomments addcomment code",
     "custom_undo_redo_levels": 10,
-    "language": "es_ES",  # To force a specific language instead of the Django current language.
+    "language": "fr_FR",  # To force a specific language instead of the Django current language.
 }
 # Application definition
 
@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'post',
     'session',
     'tinymce',
+    'contact',
 ]
 
 MIDDLEWARE = [
@@ -144,3 +145,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'session.BlogUser'
 MEDIA_ROOT  = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'niamienericn@gmail.com'
+EMAIL_HOST_PASSWORD = 'niamien2020'
+

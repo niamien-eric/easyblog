@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import path
 from . import views
+
 urlpatterns = [
     path('', views.postAll, name='home'),
     path('post/<slug:slug>/', views.postDetails,name='details'),

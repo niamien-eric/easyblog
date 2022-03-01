@@ -1,10 +1,10 @@
-<h1 class="w3-center" style="font-family: 'Pacifico', cursive;text-shadow:1px 1px 0 #444">Easy Blog</h1>
+<h1 class="w3-center w3-text-blue-grey" style="font-family: 'Pacifico', cursive;text-shadow:1px 1px 0 #444">Easy Blog</h1>
 <h6 class="w3-center" style="font-family: 'Comfortaa', cursive;">when trading become easy</h6>
 <div class="w3-bar w3-padding w3-border">
     <a href="#" class="w3-bar-item w3-button w3-mobile w3-hover-none" style="font-size: large;">EasyBlog.com</a>
     {% if home %}
         <a href="#article" class="w3-bar-item w3-button w3-mobile w3-hover-none">Article</a>
-        <a href="#contacts" class="w3-bar-item w3-button w3-mobile w3-hover-none">Contacts</a>
+        <a href="{% url 'contact' %}" class="w3-bar-item w3-button w3-mobile w3-hover-none">Contact</a>
         <a href="#about" class="w3-bar-item w3-button w3-mobile w3-hover-none">A Propos</a>
     {% else %}
         <a href="{% url 'home' %}" class="w3-bar-item w3-button w3-mobile w3-hover-none">Accueil</a>

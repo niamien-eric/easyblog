@@ -3,7 +3,10 @@ from .models import BlogPost
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 from post.models import Comment
-from forms import CommentForm,PostForm
+from forms import CommentForm,PostForm,ContactForm
+from django.core.mail import BadHeaderError, send_mail
+from django.http import HttpResponse
+from django.conf import settings
 
 def postAll(request):
     home = True
@@ -39,6 +42,7 @@ def postDetails(request,slug):
 
 def postAdd(request):
     home = False
+    message = ''
     if request.method == 'POST':
         form = PostForm(request.POST or None, request.FILES or None)
         if form.is_valid():
@@ -46,7 +50,13 @@ def postAdd(request):
             obj.author = request.user
             obj.save()
             img_object = form.instance 
-            return render(request,'post/add_post.html',{'img_obj':img_object})
+            message = 'Félicitation l\'article a été bien crée.'
+            context = {
+                'img_obj':img_object,
+                'message':message,
+               'home':home,
+                'form':form}
+            return render(request,'post/add_post.html',context)
     else:
         form = PostForm()
     context = {
@@ -57,13 +67,19 @@ def postAdd(request):
 # update view for details
 def postUpdate(request, slug):
     context ={}
+    message = ''
+    home=False
     posts = BlogPost.objects.all()
     obj = get_object_or_404(posts, slug=slug)
  
     form = PostForm(request.POST or None, instance = obj)
     if form.is_valid():
         form.save()
-        return redirect('dashboard')
+        message = 'Félicitation l\'article a été bien modifié.'
+        context = {
+                'message':message,
+               'home':home,}
+        return render(request, "post/update_post.html", context)
  
     context["form"] = form
     return render(request, "post/update_post.html", context)
@@ -75,7 +91,6 @@ def postDelete(request, slug):
     if request.method =="POST":
         post.delete()
         return redirect('dashboard')
-    
     context ={'post':post}
  
     return render(request, "post/delete_post.html", context)

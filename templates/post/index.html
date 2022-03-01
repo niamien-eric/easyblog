@@ -14,7 +14,7 @@
     </div>
 </div>
 
-<h1 class="w3-center" id="article"><u>Articles</u></h1>
+<h1 class="w3-center w3-text-blue-grey" id="article"><u>Articles</u></h1>
 <div class="container-index">
     {% for post in posts %}
         <article class="article w3-card w3-round w3-padding">
@@ -26,7 +26,7 @@
                 {% if post.published %}
                     <a href="{% url 'details' post.slug %}" class="w3-button w3-blue-gray w3-border w3-round">Lire la suite</a>
                 {% else %}
-                    <a href="" class="w3-button w3-white w3-border w3-round">En cours d'écriture</a>
+                    <a href="" class="w3-button w3-text-blue-grey w3-white w3-border w3-round">En cours d'écriture</a>
                 {% endif %}
             </div>
         </article>
@@ -50,27 +50,9 @@
         {% endif %}
     </span>
 </div>
-<div class="w3-container" style="margin: 0 5%;">
-    <hr>
-    <h2 id="contacts" class="w3-center"><u>Contactez-nous</u></h2>
-    <form class="w3-container">
-    <label>Email</label>
-    <input class="w3-input w3-border w3-light-grey" type="email">
-
-    <label>Prénoms</label>
-    <input class="w3-input w3-border w3-light-grey" type="text">
-    
-    <label>Nom</label>
-    <input class="w3-input w3-border w3-light-grey" type="text">
-    <label>Message</label>
-    <textarea class="w3-input w3-border w3-light-grey" type="text" name="" id="" cols="30" rows="10"></textarea>
-    <p></p>
-    <button class="w3-btn w3-blue-grey w3-hover-white w3-padding">Envoyé</button>
-    </form>
-</div> 
 <section style="margin: 10px 5%;">
     <hr>
-    <h1 class="w3-center" id="about"><u>A Propos</u></h1>
+    <h1 class="w3-center w3-text-blue-grey" id="about"><u>A Propos</u></h1>
     <p>
         Je m’appelle Niamien Niamien Eric, je suis blogueuse et entrepreneur. Je vis dans la région Abidjanaise, d’origine Ivoirienne j’ai un parcours atypique, une formation en Sciences Infirmières en poche, je suis en reconversion professionel pour suivre mon rêve, devenir développeur.
 

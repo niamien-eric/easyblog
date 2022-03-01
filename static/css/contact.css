@@ -1,0 +1,8 @@
+.formcontact{
+    margin: 20px 30%;
+}
+@media screen and (max-width:700px) {
+    .formcontact{
+        margin: 0 1%;
+    }
+}

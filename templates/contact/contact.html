@@ -1,0 +1,30 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block headcontent %}
+    <title>Accueil</title>
+    <link rel="stylesheet" href="{% static 'css/contact.css' %}">
+{% endblock %}
+
+{% block content %}
+<h2 id="contacts" class="w3-center w3-text-blue-grey"><u>Contactez-nous</u></h2>
+    {% if message %}
+        <p class="w3-container formcontact w3-border w3-padding w3-card w3-round w3-green">{{message}}</p>
+    {% endif %}
+    <div class="w3-container formcontact  w3-padding  w3-round">
+        <form action="" method="post">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="fieldWrapper">
+                    {{ field.errors }}
+                    {{ field.label_tag }} {{ field }}
+                    <p></p>
+                    {% if field.help_text %}
+                    <p class="help">{{ field.help_text|safe }}</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+            <input type="submit" class="w3-button w3-blue-grey" value="Submit">
+        </form>
+    </div> 
+{% endblock content %}
